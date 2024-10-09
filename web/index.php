@@ -13,7 +13,7 @@
 
     <h1>Piesakies webināram!</h1>
 
-    <form action="" method="post">
+    <form action="/confirmation.php" method="post">
         <label for="name">Name:</label>
         <input type="text" name="name" id="name"><br>
         <label for="name">Email:</label>
@@ -42,7 +42,7 @@
                 "email" => "janis@example.com",
                 "level" => "Beginner"
     ]; //asociativs masivs jeb hash map
-    
+
     $names =[
         1 => ["name" => "Janis", "email" => "janis@gmail.com", "level" => "beginner"],
         2 => ["name" => "Anna", "email" => "anna@gmail.com", "level" => "advanced"],
