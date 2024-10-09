@@ -1,24 +1,31 @@
 <?php
 
-class Task {
+class Task
+{
     private $id;
     private $title;
+    private $description;
 
-    public function __construct($id, $title) {
+    public function __construct($id, $title, $description)
+    {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
     }
 
-    public function setTitle($title) {
+    public function setTitle($title)
+    {
         $this->title = $title;
     }
 
-    public function setDescription($description) {
+
+    public function setDescription($description)
+    {
         $this->description = $description;
     }
 
-    public function displayTask() {
+    public function displayTask()
+    {
         echo "ID: " . $this->id . "\n";
         echo "Title: " . $this->title . "\n";
         echo "Description: " . $this->description . "\n";
@@ -28,16 +35,20 @@ class Task {
 
 $tasks = [];
 
-function displayAllTasks($tasks) {
+function displayAllTasks($tasks)
+{
     if (empty($tasks)) {
         echo "No tasks available.\n";
     } else {
         foreach ($tasks as $task) {
+            //var_dump($task);
+            $task->displayTask();
         }
     }
 }
 
-function createTask(&$tasks) {
+function createTask(&$tasks)
+{
     $title = readline("Enter Task Title: ");
     $description = readline("Enter Task Description: ");
 
@@ -45,15 +56,17 @@ function createTask(&$tasks) {
     $lastKey = key($tasks);
     $id = $lastKey + 1;
 
-    $tasks[$id] = new Task();
+    $tasks[$id] = new Task($id, $title, $description);
     echo "Task Created.\n";
 }
 
-function updateTask(&$tasks) {
+function updateTask(&$tasks)
+{
     $id = readline("Enter Task ID to Update: ");
 
     if (isset($tasks[$id])) {
         $newTitle = readline("Enter New Title: ");
+        $newDescription = readline("Enter New Description: ");
 
         $tasks[$id]->setTitle($newTitle);
         $tasks[$id]->setDescription($newDescription);
@@ -64,7 +77,8 @@ function updateTask(&$tasks) {
     }
 }
 
-function deleteTask(&$tasks) {
+function deleteTask(&$tasks)
+{
     $id = readline("Enter Task ID to Delete: ");
 
     if (isset($tasks[$id])) {
@@ -96,7 +110,7 @@ while (true) {
             updateTask($tasks);
             break;
         case 4:
-            deleteTasks();
+            deleteTask($tasks);
             break;
         case 5:
             echo "Exiting the application. Goodbye!\n";
